@@ -1,5 +1,5 @@
 ---
-title: "Overview DevSec Baselines"
+title: "Overview MITRE InSpec Baselines"
 layout: features
 aliases:
     - /features/

@@ -1,6 +1,6 @@
 ---
 layout: profile
-title: "DevSec MySQL Baseline"
+title: "MITRE InSpec MySQL Baseline"
 
 baseline: mysql
 inspec: data/mysql-baseline.json

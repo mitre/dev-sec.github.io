@@ -1,21 +1,18 @@
 ---
-linux:
-  id: linux-baseline
+rsa-archer:
+  id: rsa-archer-baseline
   links:
     - name: InSpec Profile
-      url: https://github.com/dev-sec/linux-baseline
+      url: https://github.com/mitre/rsa-archer-security-configuration-guide-baseline
       icon: icon-github-circled
-    - name: Ansible Remediation Role
-      url: https://github.com/dev-sec/ansible-os-hardening
-      icon: icon-github-circled
-    - name: Chef Remediation Cookbook
-      url: https://github.com/dev-sec/chef-os-hardening
-      icon: icon-github-circled
-    - name: Puppet Remediation Module
-      url: https://github.com/hardening-io/puppet-os-hardening
-      icon: icon-github-circled
-ssh:
-  id: ssh-baseline
+    # - name: Ansible Remediation Role
+    #   url: https://github.com/dev-sec/ansible-os-hardening
+    #   icon: icon-github-circled
+    # - name: Chef Remediation Cookbook
+    #   url: https://github.com/dev-sec/chef-os-hardening
+    #   icon: icon-github-circled
+aws-s3-baseline:
+  id: aws-s3-baseline
   links:
     - name: InSpec Profile
       url: https://github.com/dev-sec/ssh-baseline

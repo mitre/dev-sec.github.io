@@ -1,4 +1,4 @@
 ---
-title: "Security + DevOps"
-description: "Server Hardening Automation"
+title: "MITRE + InSpec"
+description: "Working to enable and improve DevSecOps in the Public Interest"
 ---

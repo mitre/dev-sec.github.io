@@ -1,7 +1,6 @@
 ---
 layout: profile
-title: "DevSec SSL Baseline"
-
+title: "MITRE InSpec SSL Baseline"
 baseline: ssl
 inspec: data/ssl-baseline.json
 ---

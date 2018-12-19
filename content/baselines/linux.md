@@ -1,7 +1,6 @@
 ---
 layout: profile
-title: "DevSec Linux Baseline"
-
+title: "MITRE InSpec Linux Baseline"
 baseline: linux
 inspec: data/linux-baseline.json
 ---

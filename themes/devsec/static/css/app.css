@@ -10243,7 +10243,7 @@ th.hide-for-touch {
 }
 
 .bg-landing {
-  background: url('/images/bg.png');
+  background: url('/images/bg.jpg');
   -moz-background-size: 100% 100%;
   -webkit-background-size: 100% 100%;
   background-size: 100% 100%;
@@ -10567,7 +10567,7 @@ th.hide-for-touch {
 }
 
 #team {
-  background: url("/images/bg.png");
+  background: url("/images/bg.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -10628,7 +10628,7 @@ h4 {
 }
 
 .landing_container #landing-bg {
-  background: url('/images/bg.png');
+  background: url('/images/bg.jpg');
   background-size: 100%;
   width: 100%;
   position: absolute;

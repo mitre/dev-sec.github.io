@@ -1,7 +1,6 @@
 ---
 layout: profile
-title: "DevSec Nginx Baseline"
-
+title: "MITRE InSpec Nginx Baseline"
 baseline: nginx
 inspec: data/nginx-baseline.json
 ---

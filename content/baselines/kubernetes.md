@@ -1,7 +1,6 @@
 ---
 layout: profile
-title: "DevSec Kubernetes Baseline"
-
+title: "MITRE InSpec Kubernetes Baseline"
 baseline: kubernetes
 inspec: data/cis-kubernetes-benchmark.json
 ---

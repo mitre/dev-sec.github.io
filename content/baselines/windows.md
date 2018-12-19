@@ -1,7 +1,6 @@
 ---
 layout: profile
-title: "DevSec Windows Baseline"
-
+title: "MITRE InSpec Windows Baseline"
 baseline: windows
 inspec: data/windows-baseline.json
 ---
