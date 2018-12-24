@@ -1,0 +1,7 @@
+---
+layout: profile
+title: "MITRE Inspec Microsoft IIS 8.5 Site STIG Baseline"
+
+baseline: microsoft-iis-8.5-site
+inspec: data/microsoft-iis-8.5-site-stig-baseline.json
+---

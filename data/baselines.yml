@@ -1,118 +1,120 @@
 ---
-linux:
-  id: linux-baseline
+aws:
+  id: aws-s3-baseline
   links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/linux-baseline
+    -
       icon: icon-github-circled
-    - name: Ansible Remediation Role
-      url: https://github.com/dev-sec/ansible-os-hardening
-      icon: icon-github-circled
-    - name: Chef Remediation Cookbook
-      url: https://github.com/dev-sec/chef-os-hardening
-      icon: icon-github-circled
-    - name: Puppet Remediation Module
-      url: https://github.com/hardening-io/puppet-os-hardening
-      icon: icon-github-circled
-ssh:
-  id: ssh-baseline
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/aws-s3-baseline"
+aws-demo:
+  id: aws-demo-baseline
   links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/ssh-baseline
+    -
       icon: icon-github-circled
-    - name: Ansible Remediation Role
-      url: https://github.com/dev-sec/ansible-ssh-hardening
+      name: "InSpec profile"
+      url: "https://github.com/mitre/aws-demo-baseline"
+    -
       icon: icon-github-circled
-    - name: Chef Remediation Cookbook
-      url: https://github.com/dev-sec/chef-ssh-hardening
-      icon: icon-github-circled
-    - name: Puppet Remediation Module
-      url: https://github.com/hardening-io/puppet-ssh-hardening
-      icon: icon-github-circled
-mysql:
-  id: mysql-baseline
+      name: "Chef AWS Demo Hardening"
+      url: "https://github.com/mitre/demo-aws-hardening"
+cis-aws:
+  id: cis-aws-foundations-baseline
   links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/mysql-baseline
+    -
       icon: icon-github-circled
-    - name: Ansible Remediation Role
-      url: https://github.com/dev-sec/ansible-mysql-hardening
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/cis-aws-foundations-baseline"
+    -
       icon: icon-github-circled
-    - name: Chef Remediation Cookbook
-      url: https://github.com/dev-sec/chef-mysql-hardening
-      icon: icon-github-circled
-    - name: Puppet Remediation Module
-      url: https://github.com/hardening-io/puppet-mysql-hardening
-      icon: icon-github-circled
-postgres:
-  id: postgres-baseline
+      name: "CIS AWS Foundation Baseline"
+      url: "https://github.com/mitre/cis-aws-foundations-hardening"
+cis-docker:
+  id: cis-docker-ce-baseline
   links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/postgres-baseline
+    -
       icon: icon-github-circled
-    - name: Chef Remediation Cookbook
-      url: https://github.com/dev-sec/chef-postgres-hardening
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/cis-docker-ce-baseline"
+    -
       icon: icon-github-circled
-    - name: Puppet Remediation Module
-      url: https://github.com/hardening-io/puppet-postgres-hardening
+      name: "Ansible Remediation Role"
+      url: "https://github.com/mitre/ansible-cis-docker-ce-hardening"
+    -
       icon: icon-github-circled
+      name: "Chef Remediation Cookbook"
+      url: "https://github.com/mitre/chef-cis-docker-ce-hardening"
+disa-rhel6:
+  id: disa-rhel6-stig-baseline
+  links:
+    -
+      icon: icon-github-circled
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/disa-rhel6-stig-baseline"
+heimdall-baseline:
+  id: heimdall-baseline
+  links:
+    -
+      icon: icon-github-circled
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/heimdall-baseline"
+microsoft-iis-8.5-server:
+  id: microsoft-iis-8.5-server-stig-baseline
+  links:
+    -
+      icon: icon-github-circled
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/stig-microsoft-iis-8.5-server-baseline"
+    -
+      icon: icon-github-circled
+      name: "Chef Remediation"
+      url: "https://github.com/mitre/chef-iis-85-hardening"
+microsoft-iis-8.5-site:
+  id: microsoft-iis-8.5-site-stig-baseline
+  links:
+    -
+      icon: icon-github-circled
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/stig-microsoft-iis-8.5-site-baseline"
+    -
+      icon: icon-github-circled
+      name: "Chef Remediation"
+      url: "https://github.com/mitre/chef-iis-site-hardening"
+microsoft-sql-2014:
+  id: microsoft-sql-2014-database-stig-baseline
+  links:
+    -
+      icon: icon-github-circled
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/stig-microsoft-sql-2014-database-baseline"
+microsoft-windows-server-2012r2:
+  id: microsoft-windows-2012r2-memberserver-stig-baseline
+  links:
+    -
+      icon: icon-github-circled
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/stig-microsoft-windows-2012r2-memberserver-baseline"
+microsoft-windows-server-2016:
+  id: microsoft-windows-server-2016-v1r4-stig-baseline
+  links:
+    -
+      icon: icon-github-circled
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/stig-microsoft-windows-server-2016-v1r4-baseline"
 nginx:
   id: nginx-baseline
   links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/nginx-baseline
+    -
       icon: icon-github-circled
-    - name: Ansible Remediation Role
-      url: https://github.com/dev-sec/ansible-nginx-hardening
+      name: "InSpec Profile"
+      url: "https://github.com/mitre/nginx-baseline"
+    -
       icon: icon-github-circled
-    - name: Chef Remediation Cookbook
-      url: https://github.com/dev-sec/chef-nginx-hardening
-      icon: icon-github-circled
-    - name: Puppet Remediation Module
-      url: https://github.com/hardening-io/puppet-nginx-hardening
-      icon: icon-github-circled
-apache:
-  id: apache-baseline
+      name: "Chef Hardening"
+      url: "https://github.com/mitre/chef-nginx-hardening"
+rsa-archer:
+  id: rsa-archer-security-configuration-guide-baseline
   links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/apache-baseline
+    -
       icon: icon-github-circled
-    - name: Ansible Remediation Role
-      url: https://github.com/dev-sec/ansible-apache-hardening
-      icon: icon-github-circled
-    - name: Chef Remediation Cookbook
-      url: https://github.com/dev-sec/chef-apache-hardening
-      icon: icon-github-circled
-    - name: Puppet Remediation Module
-      url: https://github.com/hardening-io/puppet-apache-hardening
-      icon: icon-github-circled
-windows:
-  id: windows-baseline
-  links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/windows-baseline
-      icon: icon-github-circled
-    - name: Ansible Remediation Role
-      url: https://github.com/dev-sec/ansible-windows-hardening
-      icon: icon-github-circled
-    - name: Chef Remediation Cookbook
-      url: https://github.com/dev-sec/chef-windows-hardening
-      icon: icon-github-circled
-ssl:
-  id: ssl-baseline
-  links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/ssl-baseline
-      icon: icon-github-circled
-docker:
-  id: docker-baseline
-  links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/cis-docker-benchmark
-      icon: icon-github-circled
-kubernetes:
-  id: kubernetes-baseline
-  links:
-    - name: InSpec Profile
-      url: https://github.com/dev-sec/cis-kubernetes-benchmark
-      icon: icon-github-circled
+      name: "Inspec Profile"
+      url: "https://github.com/mitre/rsa-archer-security-configuration-guide-baseline"
