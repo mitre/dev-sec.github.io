@@ -1,6 +1,6 @@
 ---
 layout: profile
-title: "MITRE Inspec Microsoft IIS 8.5 Site STIG Baseline"
+title: "MITRE InSpec Microsoft Windows 2012R2 Memberserver Security Technical Implementation Guide Baseline"
 
 baseline: microsoft-windows-2012r2-memberserver-stig-baseline
 inspec: data/microsoft-windows-2012r2-memberserver-stig-baseline.json

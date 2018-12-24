@@ -1,6 +1,6 @@
 ---
 layout: profile
-title: "MITRE Inspec Microsoft IIS 8.5 Site STIG Baseline"
+title: "MITRE InSpec Microsoft Windows Server 2016 Security Technical Implementation Guide Baseline"
 
 baseline: microsoft-windows-server-2016-v1r4-stig-baseline
 inspec: data/microsoft-windows-server-2016-v1r4-stig-baseline.json

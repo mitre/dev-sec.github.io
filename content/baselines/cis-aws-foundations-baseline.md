@@ -1,7 +1,7 @@
 ---
 layout: profile
-title: "MITRE Inspec CIS AWS Foundations Baseline"
+title: "MITRE InSpec CIS AWS Foundations Baseline"
 
-baseline: aws
-inspec: data/aws-s3-baseline.json
+baseline: aws-cis-aws-foundations
+inspec: data/cis-aws-foundations-baseline.json
 ---
