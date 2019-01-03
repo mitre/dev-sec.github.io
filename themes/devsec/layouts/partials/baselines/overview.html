@@ -2,82 +2,82 @@
 
   <div class="header">
     <h2 class="title center">Overview</h2>
-    <div class="description center">MITRE Inspec Hardening Baselines</div>
+    <div class="description center">MITRE Inspec Hardening Framework Baselines</div>
   </div>
 
   <div class="row">
     <div class="large-8 medium-12 small-12  small-centered columns feature-box">
       <div class="row features" data-equalizer>
+        <div class="small-3 columns types" data-equalizer-watch>
+          <div>
+             Applications
+          </div>
+        </div>
         <div class="small-9 columns content" data-equalizer-watch>
           <div class="row">
-            <div class="small-6 columns box operating_systems">
-              <a href="/baselines/operating_systems">
-                <h5>Operating Systems</h5>
+            <div class="small-6 columns box rsa-archer">
+              <a href="/baselines/rsa-archer-security-configuration-guide-baseline">
+                <h5>RSA-Archer</h5>
               </a>
             </div>
-            <div class="small-6 columns box application_layer">
-              <a href="/baselines/application">
-                <h5>Application Layer</h5>
+            <div class="small-6 columns box docker">
+              <a href="/baselines/cis-docker-ce-baseline">
+                <h5>CIS Docker CE Baseline</h5>
               </a>
             </div>
           </div>
           <div class="row">
-            <div class="small-6 columns box database">
-              <a href="/baselines/database">
-                <h5>Database</h5>
+            <div class="small-6 columns box heimdall">
+              <a href="/baselines/heimdall-baseline">
+                <h5>Heimdall</h5>
               </a>
             </div>
-            <div class="small-6 columns box cloud_storage">
-              <a href="/baselines/cloud_storage">
-                <h5>Cloud Storage</h5>
+            <div class="small-6 columns box nginx">
+              <a href="/baselines/nginx-baseline">
+                <h5>Nginx</h5>
               </a>
             </div>
-
           </div>
         </div>
       </div>
       <div class="row features" data-equalizer>
+        <div class="small-3 columns types" data-equalizer-watch>
+          <div>
+             Database
+          </div>
+        </div>
         <div class="small-9 columns content" data-equalizer-watch>
           <div class="row">
-            <div class="small-6 columns box deactivated">
-              <a href="#">
-                      <span>Logging / Monitoring</span>
+            <div class="small-6 columns box microsoft-sql-2014-database-stig-baseline">
+              <a href="/baselines/microsoft-sql-2014-database-stig-baseline">
+                      <h5> Microsoft SQL 2014 STIG Baseline </h5>
                   </a>
             </div>
-            <div class="small-6 columns box deactivated">
-              <a href="#">
-                      <span>User Management</span>
-                  </a>
-            </div>
+
           </div>
         </div>
       </div>
       <div class="row features" data-equalizer>
           <div class="small-3 columns types" data-equalizer-watch>
             <div>
-              <span class="green-checkmark">✓</span> Components
+               Cloud Security Validation
             </div>
           </div>
           <div class="small-9 columns content" data-equalizer-watch>
             <div class="row">
-              <div class="small-3 columns box ssh">
-                <a href="/baselines/ssh">
-                  <h5>SSH</h5>
+              <div class="small-6 columns box aws-s3-baseline">
+                <a href="/baselines/aws-s3-baseline">
+                  <h5>AWS S3</h5>
                 </a>
               </div>
-              <div class="small-3 columns box ssl">
-                <a href="/baselines/ssl">
-                  <h5>SSL</h5>
+              <div class="small-6 columns box cis-aws">
+                <a href="/baselines/cis-aws-foundations-baseline">
+                  <h5>CIS AWS Foundations</h5>
                 </a>
               </div>
-              <div class="small-3 columns box docker">
-                <a href="/baselines/docker">
-                  <h5>Docker</h5>
-                </a>
-              </div>
-              <div class="small-3 columns box k8s">
-                <a href="/baselines/kubernetes">
-                  <h5>K8S</h5>
+              <div class="small-6 columns box aws-demo">
+                <a href="/baselines/aws-demo-baseline">
+                  <h5>AWS Demo Baseline</h5>
                 </a>
               </div>
             </div>
@@ -86,19 +86,24 @@
       <div class="row features" data-equalizer>
         <div class="small-3 columns types" data-equalizer-watch>
           <div>
-            <span class="green-checkmark">✓</span> OS
+             OS
           </div>
         </div>
         <div class="small-9 columns content" data-equalizer-watch>
           <div class="row">
-            <div class="small-6 columns box os">
-              <a href="/baselines/linux">
-                <h5>Linux</h5>
+            <div class="small-6 columns box disa-rhel6">
+              <a href="/baselines/disa-rhel6-stig-baseline">
+                <h5>DISA RHEL6</h5>
               </a>
             </div>
             <div class="small-6 columns box os">
-                <a href="/baselines/windows">
-                  <h5>Windows</h5>
+                <a href="/baselines/microsoft-windows-2012r2-memberserver-stig-baseline">
+                  <h5>Windows Server 2012R2</h5>
+                </a>
+              </div>
+            <div class="small-6 columns box os">
+                <a href="/baselines/microsoft-windows-server-2016-v1r4-stig-baseline">
+                  <h5>Windows Server 2016</h5>
                 </a>
               </div>
           </div>
@@ -107,19 +112,29 @@
       <div class="row features" data-equalizer>
         <div class="small-3 columns types" data-equalizer-watch>
           <div>
-            <span class="red-checkmark">✗</span> Network
+            Web Server Validation
           </div>
         </div>
         <div class="small-9 columns content" data-equalizer-watch>
           <div class="row">
-            <div class="small-6 columns box deactivated">
-              <a href="#">
-                      <span>Intrusion Detection</span>
+            <div class="small-6 columns box iis-server-8.5-server">
+              <a href="/baselines/microsoft-iis-8.5-server-stig-baseline">
+                      <span>Microsoft IIS 8.5 Server</span>
                   </a>
             </div>
-            <div class="small-6 columns box deactivated">
-              <a href="#">
-                      <span>Firewall</span>
+            <div class="small-6 columns box iis-server-8.5-site">
+              <a href="/baselines/microsoft-iis-8.5-site-stig-baseline">
+                      <span>Microsoft IIS 8.5 Site</span>
+                  </a>
+            </div>
+            <div class="small-6 columns box iis-server-8.5-site">
+              <a href="/baselines/helloworld-web-functional-baseline">
+                      <span>Hello World Functional Baseline</span>
+                  </a>
+            </div>
+            <div class="small-6 columns box iis-server-8.5-site">
+              <a href="/baselines/helloworld-web-security-baseline">
+                      <span>Hello World Security Basline</span>
                   </a>
             </div>
           </div>
@@ -128,10 +143,6 @@
       <div class="row features">
         <div class="small-3 columns"></div>
         <div class="small-9 columns">
-          <div class="center">
-            <span class="green-checkmark">✓</span> included &nbsp;&nbsp;&nbsp;
-            <span class="red-checkmark">✗</span> not in scope
-          </div>
         </div>
       </div>
     </div>

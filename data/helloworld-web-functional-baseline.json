@@ -1,0 +1,150 @@
+{
+  "name": "helloworld-web-functional-baseline",
+  "title": "Functional Testing for helloworld-web application",
+  "maintainer": "The MITRE InSpec Team",
+  "copyright": "The MITRE Corporation, 2018",
+  "copyright_email": "opensource@mitre.org",
+  "license": "Apache-2.0",
+  "summary": "This InSpec profile provides a minimal - however incomplete - example to include functional testing for a the helloworld-web docker application.",
+  "version": "1.0.0",
+  "supports": [
+    {
+      "platform": "os"
+    }
+  ],
+  "inspec_version": "~> 3.0",
+  "attributes": [
+    {
+      "name": "application_url",
+      "options": {
+        "description": "application url",
+        "type": "string",
+        "default": "localhost"
+      }
+    },
+    {
+      "name": "application_container_name",
+      "options": {
+        "description": "",
+        "type": "string",
+        "default": "helloworld-web"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "title": "Verify Docker Container exists and is running",
+      "desc": null,
+      "descriptions": {},
+      "impact": 0.7,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "CM-6",
+          "Rev_4"
+        ]
+      },
+      "code": "control 'docker-checks-1.1' do\n  impact 0.7 # High Impact\n  tag \"nist\": ['CM-6', 'Rev_4']\n  title 'Verify Docker Container exists and is running'\n\n  describe docker_container(name: attribute('application_container_name')) do\n    it { should exist }\n    it { should be_running }\n  end\nend\n",
+      "source_location": {
+        "ref": "/Users/mtollick/.inspec/cache/f96554238af4061cf9861810a98d5bdc3f1f2172/controls/functional_controls.rb",
+        "line": 3
+      },
+      "id": "docker-checks-1.1"
+    },
+    {
+      "title": "Verify Docker Container Run commands",
+      "desc": null,
+      "descriptions": {},
+      "impact": 0.5,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "CM-6",
+          "Rev_4"
+        ]
+      },
+      "code": "control 'docker-checks-1.2' do\n  impact 0.5 # Medium Impact\n  title 'Verify Docker Container Run commands'\n  tag \"nist\": ['CM-6', 'Rev_4']\n\n  describe docker_container(name: attribute('application_container_name')) do\n    its('command') { should eq '/app/helloworld-web' }\n  end\nend\n",
+      "source_location": {
+        "ref": "/Users/mtollick/.inspec/cache/f96554238af4061cf9861810a98d5bdc3f1f2172/controls/functional_controls.rb",
+        "line": 14
+      },
+      "id": "docker-checks-1.2"
+    },
+    {
+      "title": "Verify Container published ports",
+      "desc": null,
+      "descriptions": {},
+      "impact": 0.5,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "CM-6",
+          "Rev_4"
+        ]
+      },
+      "code": "control 'docker-checks-1.4' do\n  impact 0.5 # Medium Impact\n  title 'Verify Container published ports'\n  tag \"nist\": ['CM-6', 'Rev_4']\n\n  describe docker_container(name: attribute('application_container_name')) do\n    its('ports') { should eq '0.0.0.0:3000->3000/tcp' }\n  end\nend\n",
+      "source_location": {
+        "ref": "/Users/mtollick/.inspec/cache/f96554238af4061cf9861810a98d5bdc3f1f2172/controls/functional_controls.rb",
+        "line": 24
+      },
+      "id": "docker-checks-1.4"
+    },
+    {
+      "title": "Verify application is running",
+      "desc": null,
+      "descriptions": {},
+      "impact": 0.7,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "CM-6",
+          "Rev_4"
+        ]
+      },
+      "code": "control 'application-checks-2.1' do\n  impact 0.7 # High Impact\n  title 'Verify application is running'\n  tag \"nist\": ['CM-6', 'Rev_4']\n\n  describe.one do\n    describe http(\"http://#{application_url}\", enable_remote_worker: true) do\n      its('status') { should cmp 200 }\n    end\n\n    describe http(\"https://#{application_url}\", enable_remote_worker: true) do\n      its('status') { should cmp 200 }\n    end\n  end\nend\n",
+      "source_location": {
+        "ref": "/Users/mtollick/.inspec/cache/f96554238af4061cf9861810a98d5bdc3f1f2172/controls/functional_controls.rb",
+        "line": 36
+      },
+      "id": "application-checks-2.1"
+    },
+    {
+      "title": "Validate application response",
+      "desc": null,
+      "descriptions": {},
+      "impact": 0.5,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "CM-6",
+          "Rev_4"
+        ]
+      },
+      "code": "control 'application-checks-2.2' do\n  impact 0.5 # Medium Impact\n  title 'Validate application response'\n  tag \"nist\": ['CM-6', 'Rev_4']\n\n  describe http(\"http://#{application_url}\", enable_remote_worker: true) do\n    its('body.chomp') { should cmp 'Hello world!' }\n  end\nend\n",
+      "source_location": {
+        "ref": "/Users/mtollick/.inspec/cache/f96554238af4061cf9861810a98d5bdc3f1f2172/controls/functional_controls.rb",
+        "line": 52
+      },
+      "id": "application-checks-2.2"
+    }
+  ],
+  "groups": [
+    {
+      "title": null,
+      "controls": [
+        "docker-checks-1.1",
+        "docker-checks-1.2",
+        "docker-checks-1.4",
+        "application-checks-2.1",
+        "application-checks-2.2"
+      ],
+      "id": "controls/functional_controls.rb"
+    }
+  ],
+  "sha256": "4d4a500b52a70bc9cce316c788cd41601cc61dfaf2f0aa5cbcef5a53f0f97f8b",
+  "status": "loaded",
+  "generator": {
+    "name": "inspec",
+    "version": "3.1.3"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "name": "heimdall-baseline",
+  "title": "InSpec Profile",
+  "maintainer": "The Authors",
+  "copyright": "The Authors",
+  "copyright_email": "you@example.com",
+  "license": "Apache-2.0",
+  "summary": "An InSpec Compliance Profile",
+  "version": "0.1.0",
+  "supports": [],
+  "controls": [
+    {
+      "title": null,
+      "desc": null,
+      "descriptions": {},
+      "impact": 0.5,
+      "refs": [],
+      "tags": {},
+      "code": "",
+      "source_location": {
+        "ref": "/usr/local/lib/ruby/gems/2.5.0/gems/inspec-3.1.3/lib/inspec/control_eval_context.rb",
+        "line": 120
+      },
+      "id": "(generated from example.rb:7 57c01b32e76cf66545fe59a2a262f407)"
+    },
+    {
+      "title": "Create /tmp directory",
+      "desc": "An optional description...",
+      "descriptions": {
+        "default": "An optional description..."
+      },
+      "impact": 0.7,
+      "refs": [],
+      "tags": {},
+      "code": "control 'tmp-1.0' do                        # A unique ID for this control\n  impact 0.7                                # The criticality, if this control fails.\n  title 'Create /tmp directory'             # A human-readable title\n  desc 'An optional description...'\n  describe file('/tmp') do                  # The actual test\n    it { should be_directory }\n  end\nend\n",
+      "source_location": {
+        "ref": "/Users/mtollick/.inspec/cache/a030dcfc8bf0b569ac22a8aa8c9e203133e42e1a/controls/example.rb",
+        "line": 12
+      },
+      "id": "tmp-1.0"
+    }
+  ],
+  "groups": [
+    {
+      "title": "sample section",
+      "controls": [
+        "(generated from example.rb:7 57c01b32e76cf66545fe59a2a262f407)",
+        "tmp-1.0"
+      ],
+      "id": "controls/example.rb"
+    }
+  ],
+  "attributes": [],
+  "sha256": "5abfbd6776bd5ecc1dcb8a7ba2543b178531ee83bae910fd7c730175a7dc1444",
+  "status": "loaded",
+  "generator": {
+    "name": "inspec",
+    "version": "3.1.3"
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "name": "aws-inspec-demo",
+  "title": "AWS Inspec Demo",
+  "maintainer": "aaronlippold",
+  "copyright": "aaronlippold",
+  "copyright_email": "lippold@gmail.com",
+  "license": "Apache 2 license",
+  "summary": "Test-suite for best-practice aws hardening for functionality Demo",
+  "version": "0.2",
+  "depends": [
+    {
+      "name": "aws-resource-pack",
+      "git": "https://github.com/aaronlippold/inspec-aws.git",
+      "status": "loaded"
+    }
+  ],
+  "supports": [],
+  "controls": [
+    {
+      "title": "Ensure there are no publicly accessible S3 buckets",
+      "desc": "Ensure there are no publicly accessible S3 buckets",
+      "descriptions": {
+        "default": "Ensure there are no publicly accessible S3 buckets"
+      },
+      "impact": 0.7,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "AC-6",
+          "Rev_4"
+        ],
+        "severity": "high",
+        "check": "Review your AWS console and note if any S3 buckets are set to\n                'Public'. If any buckets are listed as 'Public', then this is\n                a finding.",
+        "fix": "Log into your AWS console and select the S3 buckets section. Select\n              the buckets found in your review. Select the permisssions tab for\n              the bucket and remove the Public access permission."
+      },
+      "code": "control \"s3-buckets-no-public-access\" do\n  impact 0.7\n  title \"Ensure there are no publicly accessible S3 buckets\"\n  desc \"Ensure there are no publicly accessible S3 buckets\"\n\n  tag \"nist\": [\"AC-6\", \"Rev_4\"]\n  tag \"severity\": \"high\"\n\n  tag \"check\": \"Review your AWS console and note if any S3 buckets are set to\n                'Public'. If any buckets are listed as 'Public', then this is\n                a finding.\"\n\n  tag \"fix\": \"Log into your AWS console and select the S3 buckets section. Select\n              the buckets found in your review. Select the permisssions tab for\n              the bucket and remove the Public access permission.\"\n\n  describe aws_s3_buckets do\n    it { should_not have_public_buckets }\n  end\n\n  describe aws_s3_buckets.where(availability: 'Public') do\n    its('bucket_names') { should eq [] }\n  end\nend\n",
+      "source_location": {
+        "ref": "aws-demo-baseline-master/controls/aws_s3_bucket.rb",
+        "line": 12
+      },
+      "id": "s3-buckets-no-public-access"
+    },
+    {
+      "title": "Ensure there are no publicly accessible S3 objects",
+      "desc": "Ensure there are no publicly accessible S3 objects",
+      "descriptions": {
+        "default": "Ensure there are no publicly accessible S3 objects"
+      },
+      "impact": 0.7,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "AC-6",
+          "Rev_4"
+        ],
+        "severity": "high",
+        "check": "Review your AWS console and note if any S3 bucket objects are set to\n                'Public'. If any objects are listed as 'Public', then this is\n                a finding.",
+        "fix": "Log into your AWS console and select the S3 buckets section. Select\n              the buckets found in your review. For each object in the bucket\n              select the permisssions tab for the object and remove\n              the Public Access permission."
+      },
+      "code": "control \"s3-objects-no-public-access\" do\n  impact 0.7\n  title \"Ensure there are no publicly accessible S3 objects\"\n  desc \"Ensure there are no publicly accessible S3 objects\"\n  tag \"nist\": [\"AC-6\", \"Rev_4\"]\n  tag \"severity\": \"high\"\n\n  tag \"check\": \"Review your AWS console and note if any S3 bucket objects are set to\n                'Public'. If any objects are listed as 'Public', then this is\n                a finding.\"\n\n  tag \"fix\": \"Log into your AWS console and select the S3 buckets section. Select\n              the buckets found in your review. For each object in the bucket\n              select the permisssions tab for the object and remove\n              the Public Access permission.\"\n\n  my_buckets = aws_s3_buckets.table\n  my_buckets.each do |bucket|\n   describe aws_s3_bucket(bucket_name: bucket[:bucket_name]) do\n     # returns a true or false\n     it { should_not have_public_objects }\n     # returns a list of offenders if fails\n     its('public_objects') { should cmp [] }\n   end\n  end\nend\n",
+      "source_location": {
+        "ref": "aws-demo-baseline-master/controls/aws_s3_bucket_objects.rb",
+        "line": 2
+      },
+      "id": "s3-objects-no-public-access"
+    },
+    {
+      "title": "4.1 Ensure no security groups allow ingress from 0.0.0.0/0 to port 22",
+      "desc": "Security groups provide stateful filtering of ingress/egress network\n        traffic to AWS resources. It is recommended that no security group allows unrestricted\n        ingress access to port 22.",
+      "descriptions": {
+        "default": "Security groups provide stateful filtering of ingress/egress network\n        traffic to AWS resources. It is recommended that no security group allows unrestricted\n        ingress access to port 22."
+      },
+      "impact": 0.7,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "SC-7(5)",
+          "Rev_4"
+        ],
+        "severity": "high",
+        "check": "\n      1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n      2. In the left pane, click Security Groups\n      3. For each security group, perform the following:\n        1. Select the security group\n        2. Click the Inbound Rules tab\n        3. Ensure no rule exists that has a port range that includes port 22 and\n           has a Source of 0.0.0.0/0 Note: A Port value of ALL or a port range\n           such as 0-1024 are inclusive of port 22. ",
+        "fix": "\n      1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n      2. In the left pane, click Security Groups\n      3. For each security group, perform the following:\n        1. Select the security group\n        2. Click the Inbound Rules tab\n        3. Identify the rules to be removed\n        4. Click the x in the Remove column\n        5. Click Save "
+      },
+      "code": "control \"cis_aws_foundations-4.1\" do\n  impact 0.7\n  title \"4.1 Ensure no security groups allow ingress from 0.0.0.0/0 to port 22\"\n  desc \"Security groups provide stateful filtering of ingress/egress network\n        traffic to AWS resources. It is recommended that no security group allows unrestricted\n        ingress access to port 22.\"\n  tag \"nist\": [\"SC-7(5)\",\"Rev_4\"]\n  tag \"severity\": \"high\"\n\n  tag \"check\": \"\n      1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n      2. In the left pane, click Security Groups\n      3. For each security group, perform the following:\n        1. Select the security group\n        2. Click the Inbound Rules tab\n        3. Ensure no rule exists that has a port range that includes port 22 and\n           has a Source of 0.0.0.0/0 Note: A Port value of ALL or a port range\n           such as 0-1024 are inclusive of port 22. \"\n  tag \"fix\": \"\n      1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n      2. In the left pane, click Security Groups\n      3. For each security group, perform the following:\n        1. Select the security group\n        2. Click the Inbound Rules tab\n        3. Identify the rules to be removed\n        4. Click the x in the Remove column\n        5. Click Save \"\n\n  describe aws_ec2_security_group(fixtures['ec2_security_group_allow_all_group_id']) do\n    it { should_not be_open_on_port(22) }\n  end\nend\n",
+      "source_location": {
+        "ref": "aws-demo-baseline-master/controls/security_groups.rb",
+        "line": 14
+      },
+      "id": "cis_aws_foundations-4.1"
+    },
+    {
+      "title": "4.2 Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389",
+      "desc": "Security groups provide stateful filtering of ingress/egress network traffic\n        to AWS resources. It is recommended that no security group allows unrestricted\n        ingress access to port 3389.",
+      "descriptions": {
+        "default": "Security groups provide stateful filtering of ingress/egress network traffic\n        to AWS resources. It is recommended that no security group allows unrestricted\n        ingress access to port 3389."
+      },
+      "impact": 0.7,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "SC-7(5)",
+          "Rev_4"
+        ],
+        "severity": "high",
+        "check": "Perform the following to determine if the account is configured as prescribed:\n      1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n      2. In the left pane, click Security Groups\n      3. For each security group, perform the following:\n        1. Select the security group\n        2. Click the Inbound Rules tab\n        3. Ensure no rule exists that has a port range that includes port 3389\n           and has a Source of 0.0.0.0/0 ",
+        "fix": "\n      1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n      2. In the left pane, click Security Groups\n      3. For each security group, perform the following:\n        1. Select the security group\n        2. Click the Inbound Rules tab\n        3. Identify the rules to be removed\n        4. Click the x in the Remove column\n        5. Click Save "
+      },
+      "code": "control \"cis_aws_foundations-4.2\" do\n  impact 0.7\n  title \"4.2 Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389\"\n  desc \"Security groups provide stateful filtering of ingress/egress network traffic\n        to AWS resources. It is recommended that no security group allows unrestricted\n        ingress access to port 3389.\"\n  tag \"nist\": [\"SC-7(5)\",\"Rev_4\"]\n  tag \"severity\": \"high\"\n  tag \"check\": \"Perform the following to determine if the account is configured as prescribed:\n      1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n      2. In the left pane, click Security Groups\n      3. For each security group, perform the following:\n        1. Select the security group\n        2. Click the Inbound Rules tab\n        3. Ensure no rule exists that has a port range that includes port 3389\n           and has a Source of 0.0.0.0/0 \"\n  tag \"fix\": \"\n      1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n      2. In the left pane, click Security Groups\n      3. For each security group, perform the following:\n        1. Select the security group\n        2. Click the Inbound Rules tab\n        3. Identify the rules to be removed\n        4. Click the x in the Remove column\n        5. Click Save \"\n\n  describe aws_ec2_security_group(fixtures['ec2_security_group_allow_all_group_id']) do\n    it { should_not be_open_on_port(3389) }\n  end\nend\n",
+      "source_location": {
+        "ref": "aws-demo-baseline-master/controls/security_groups.rb",
+        "line": 47
+      },
+      "id": "cis_aws_foundations-4.2"
+    },
+    {
+      "title": "Ensure the default security group of every VPC restricts all traffic ",
+      "desc": "A VPC comes with a default security group whose initial settings deny all\n        inbound traffic, allow all outbound traffic, and allow all traffic between\n        instances assigned to the security group. If you don't specify a security group\n        when you launch an instance, the instance is automatically assigned to this\n        default security group. Security groups provide stateful filtering of\n        ingress/egress network traffic to AWS resources. It is recommended that\n        the default security group restrict all traffic. The default VPC in every\n        region should have it's default security group updated to comply.  Any newly\n        created VPCs will automatically contain a default security group that will\n        need remediation to comply with this recommendation.",
+      "descriptions": {
+        "default": "A VPC comes with a default security group whose initial settings deny all\n        inbound traffic, allow all outbound traffic, and allow all traffic between\n        instances assigned to the security group. If you don't specify a security group\n        when you launch an instance, the instance is automatically assigned to this\n        default security group. Security groups provide stateful filtering of\n        ingress/egress network traffic to AWS resources. It is recommended that\n        the default security group restrict all traffic. The default VPC in every\n        region should have it's default security group updated to comply.  Any newly\n        created VPCs will automatically contain a default security group that will\n        need remediation to comply with this recommendation."
+      },
+      "impact": 0.7,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "SC-7(5)",
+          "Rev_4"
+        ],
+        "severity": "high",
+        "check": "Perform the following to determine if the account is configured as prescribed:\n        Security Group State\n          1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n          2. Repeat the next steps for all VPCs - including the default VPC in each AWS region:\n          3. In the left pane, click Security Groups\n          4. For each default security group, perform the following:\n            1. Select the default security group\n            2. Click the Inbound Rules tab\n            3. Ensure no rule exist\n            4. Click the Outbound Rules tab\n            5. Ensure no rules exist\n        Security Group Members\n          1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n          2. Repeat the next steps for all default groups in all VPCs - including the default VPC in each AWS region:\n          3. In the left pane, click Security Groups\n          4. Copy the id of the default security group.\n          5. Change to the EC2 Management Console at https://console.aws.amazon.com/ec2/v2/home\n          6. In the filter column type 'Security Group ID : <security group id from #4>'",
+        "fix": "\n        Security Group Members\n          1. Identify AWS resources that exist within the default security group\n          2. Create a set of least privilege security groups for those resources\n          3. Place the resources in those security groups\n          4. Remove the resources noted in #1 from the default security group\n        Security Group State\n          1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n          2. Repeat the next steps for all VPCs - including the default VPC in each AWS region:\n          3. In the left pane, click Security Groups\n          4. For each default security group, perform the following:\n            1. Select the default security group\n            2. Click the Inbound Rules tab\n            3. Remove any inbound rules\n            4. Click the Outbound Rules tab\n            5. Remove any {outbound} rules"
+      },
+      "code": "control \"cis_aws_foundations-4.4\" do\n  impact 0.7\n  title \"Ensure the default security group of every VPC restricts all traffic \"\n  desc \"A VPC comes with a default security group whose initial settings deny all\n        inbound traffic, allow all outbound traffic, and allow all traffic between\n        instances assigned to the security group. If you don't specify a security group\n        when you launch an instance, the instance is automatically assigned to this\n        default security group. Security groups provide stateful filtering of\n        ingress/egress network traffic to AWS resources. It is recommended that\n        the default security group restrict all traffic. The default VPC in every\n        region should have it's default security group updated to comply.  Any newly\n        created VPCs will automatically contain a default security group that will\n        need remediation to comply with this recommendation. \"\n  tag \"nist\": [\"SC-7(5)\",\"Rev_4\"]\n  tag \"severity\": \"high\"\n  tag \"check\": \"Perform the following to determine if the account is configured as prescribed:\n        Security Group State\n          1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n          2. Repeat the next steps for all VPCs - including the default VPC in each AWS region:\n          3. In the left pane, click Security Groups\n          4. For each default security group, perform the following:\n            1. Select the default security group\n            2. Click the Inbound Rules tab\n            3. Ensure no rule exist\n            4. Click the Outbound Rules tab\n            5. Ensure no rules exist\n        Security Group Members\n          1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n          2. Repeat the next steps for all default groups in all VPCs - including the default VPC in each AWS region:\n          3. In the left pane, click Security Groups\n          4. Copy the id of the default security group.\n          5. Change to the EC2 Management Console at https://console.aws.amazon.com/ec2/v2/home\n          6. In the filter column type 'Security Group ID : <security group id from #4>'\"\n  tag \"fix\": \"\n        Security Group Members\n          1. Identify AWS resources that exist within the default security group\n          2. Create a set of least privilege security groups for those resources\n          3. Place the resources in those security groups\n          4. Remove the resources noted in #1 from the default security group\n        Security Group State\n          1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home\n          2. Repeat the next steps for all VPCs - including the default VPC in each AWS region:\n          3. In the left pane, click Security Groups\n          4. For each default security group, perform the following:\n            1. Select the default security group\n            2. Click the Inbound Rules tab\n            3. Remove any inbound rules\n            4. Click the Outbound Rules tab\n            5. Remove any {outbound} rules\"\n\n    # You should be able to find the security group named default\n    describe aws_ec2_security_group(group_id: fixtures['ec2_security_group_default_group_id']) do\n      it { should exist }\n      its('ingress_rules.count') { should eq 0 }\n      its('egress_rules.count') { should eq 0 }\n    end\n\n    describe aws_ec2_security_group(group_id: fixtures['ec2_security_group_allow_all_group_id']) do\n      it { should exist }\n      its('ingress_rules') { should cmp [] }\n      its('egress_rules')  { should cmp [] }\n    end\n  end\n",
+      "source_location": {
+        "ref": "aws-demo-baseline-master/controls/security_groups.rb",
+        "line": 78
+      },
+      "id": "cis_aws_foundations-4.4"
+    }
+  ],
+  "groups": [
+    {
+      "title": null,
+      "controls": [
+        "s3-buckets-no-public-access"
+      ],
+      "id": "controls/aws_s3_bucket.rb"
+    },
+    {
+      "title": null,
+      "controls": [
+        "s3-objects-no-public-access"
+      ],
+      "id": "controls/aws_s3_bucket_objects.rb"
+    },
+    {
+      "title": null,
+      "controls": [
+        "cis_aws_foundations-4.1",
+        "cis_aws_foundations-4.2",
+        "cis_aws_foundations-4.4"
+      ],
+      "id": "controls/security_groups.rb"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "ec2_security_group_default_vpc_id",
+      "options": {
+        "default": "default.ec2_security_group_default_vpc_id",
+        "description": "See ../build/ec2.tf"
+      }
+    },
+    {
+      "name": "ec2_security_group_default_group_id",
+      "options": {
+        "default": "default.ec2_security_group_default_group_id",
+        "description": "See ../build/ec2.tf"
+      }
+    },
+    {
+      "name": "ec2_security_group_allow_all_group_id",
+      "options": {
+        "default": "default.ec2_security_group_allow_all_group_id",
+        "description": "See ../build/ec2.tf"
+      }
+    }
+  ],
+  "sha256": "9be71c4ef7f0cb7cb6b24a6eb2ea64f18f0ef3bbb902fcbca8053bc2888496c3",
+  "status": "loaded",
+  "generator": {
+    "name": "inspec",
+    "version": "3.1.3"
+  }
+}

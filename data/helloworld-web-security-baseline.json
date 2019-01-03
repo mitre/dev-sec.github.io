@@ -1,0 +1,90 @@
+{
+  "name": "hello-world-web-security-baseline",
+  "title": "Security baseline for helloworld-web application",
+  "maintainer": "MITRE InSpec Team",
+  "copyright": "The MITRE Corporation, 2018",
+  "copyright_email": "opensource@mitre.org",
+  "license": "Apache-2.0",
+  "summary": "This InSpec profile provides a minimal - however incomplete - example to include security testing for a the helloworld-web docker application.",
+  "version": "1.0.0",
+  "supports": [
+    {
+      "platform": "os"
+    }
+  ],
+  "inspec_version": "~> 3.0",
+  "attributes": [
+    {
+      "name": "application_url",
+      "options": {
+        "description": "application url",
+        "type": "string",
+        "default": "localhost"
+      }
+    },
+    {
+      "name": "application_container_name",
+      "options": {
+        "description": "",
+        "type": "string",
+        "default": "helloworld-web"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "title": "Verify Docker Container Image source",
+      "desc": null,
+      "descriptions": {},
+      "impact": 0.7,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "SI-10",
+          "Rev_4"
+        ]
+      },
+      "code": "control 'security-checks-1.1' do\n  impact 0.7 # High Impact\n  title 'Verify Docker Container Image source'\n  tag \"nist\": ['SI-10', 'Rev_4']\n\n  describe docker_container(name: attribute('application_container_name')) do\n    its('repo') { should eq 'nemonik/helloworld-web' }\n    its('tag') { should eq 'latest' }\n  end\nend\n",
+      "source_location": {
+        "ref": "helloworld-web-security-baseline-master/controls/security_controls.rb",
+        "line": 1
+      },
+      "id": "security-checks-1.1"
+    },
+    {
+      "title": "Verify application is running securely",
+      "desc": null,
+      "descriptions": {},
+      "impact": 0.7,
+      "refs": [],
+      "tags": {
+        "nist": [
+          "SC-8",
+          "Rev_4"
+        ]
+      },
+      "code": "control 'security-checks-1.2' do\n  impact 0.7 # High Impact\n  title 'Verify application is running securely'\n  tag \"nist\": ['SC-8', 'Rev_4']\n\n  describe http(\"https://#{application_url}\", enable_remote_worker: true, ssl_verify: false) do\n    its('body') { should cmp 'awesome' }\n  end\nend\n",
+      "source_location": {
+        "ref": "helloworld-web-security-baseline-master/controls/security_controls.rb",
+        "line": 14
+      },
+      "id": "security-checks-1.2"
+    }
+  ],
+  "groups": [
+    {
+      "title": null,
+      "controls": [
+        "security-checks-1.1",
+        "security-checks-1.2"
+      ],
+      "id": "controls/security_controls.rb"
+    }
+  ],
+  "sha256": "3131fb0f50a5c6c4c3256de6f247bbf5152eaa89e40244a0d355796f44230f9a",
+  "status": "loaded",
+  "generator": {
+    "name": "inspec",
+    "version": "3.1.3"
+  }
+}

@@ -10283,7 +10283,7 @@ th.hide-for-touch {
 }
 
 .product .baselines {
-  background-color: #aa82e3;
+  background-color: #4283f4;
   background-size: 100%;
 }
 
@@ -10353,11 +10353,11 @@ th.hide-for-touch {
   color: #fff;
 }
 
-.baselines .features .mysql>a {
+.baselines .features .rsa-archer>a {
   background-color: #ECA73F;
 }
 
-.baselines .features .postgres>a {
+.baselines .features .heimdall>a {
   background-color: #ECA73F;
 }
 
