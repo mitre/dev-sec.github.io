@@ -22,13 +22,6 @@ metaDataFormat = "yaml"
   identifier = "application"
   url = "/application/"
 
-[[menu.sub]]
-  name = "Vulcan"
-  parent = "application"
-  weight = 3
-  identifier = "vulcan"
-  url = "/application/vulcan/"
-
 [[menu.global]]
   name = "Baselines"
   weight = 4
