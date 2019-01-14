@@ -1,14 +1,8 @@
-baseURL = "https://dev-sec.io/"
+baseURL = "https://mitre-inspec.github.io/"
 languageCode = "en-us"
-title = "DevSec Hardening Framework"
+title = "MITRE InSpec Compliance Framework"
 theme = "devsec"
 metaDataFormat = "yaml"
-
-[[menu.global]]
-  name = "About"
-  weight = 1
-  identifier = "project"
-  url = "/project/"
 
 [[menu.global]]
   name = "Tools"
@@ -29,22 +23,10 @@ metaDataFormat = "yaml"
   url = "/baselines/"
 
 [[menu.global]]
-  name = "Videos"
-  weight = 5
-  identifier = "videos"
-  url = "/videos/"
-
-[[menu.global]]
   name = "Community"
   weight = 6
   identifier = "comunity"
   url = "/community/"
-
-[[menu.global]]
-  name = "News"
-  weight = 7
-  identifier = "blog"
-  url = "/blog/"
 
 [[menu.global]]
   name = "GitHub"

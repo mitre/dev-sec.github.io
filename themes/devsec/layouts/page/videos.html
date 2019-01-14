@@ -1,26 +1,12 @@
 {{ define "main" }}
-<section id="page-header">
-  <div class="row">
-    <div class="large-12 medium-12 small-12 small-center columns">
-      <h2>Videos</h2>
+<section class="contributing content">
+    <div class="row">
+        <h1>{{ .Title }}</h1>
     </div>
-  </div>
-</section>
-
-<section class="articles">
-  <div class="row">
-    <div class="large-12 medium-12 small-12 small-center columns">
-    <div>
-      <div class="row articles-container" data-equalizer="">
-        {{ range $ind, $vid := $.Site.Data.videos.videos }}
-        <div class="large-6 medium-12 small-12 columns text-center video">
-          <iframe width="400" height="225" src="{{ .url }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <div class="row">
+        <div class="large-12 medium-12 small-12 small-center columns">
+        {{ .Content }}
         </div>
-        {{ end }}
-      </div>
-
     </div>
-  </div>
 </section>
-
 {{ end }}

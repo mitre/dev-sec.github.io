@@ -1,9 +1,6 @@
 ---
-title: "Application overview videos"
+title: "Videos"
 layout: videos
 ---
 
-# Vulcan Demo
-
-
-<iframe src="/videos/vulcan_demo.mp4" style="position: absolute;"> </iframe>
+# Coming Soon

@@ -1,4 +1,7 @@
-# Tools overview
+---
+title: "Tools Overview"
+layout: inspec_tools
+---
 
 ## [Inspec Tools](https://github.com/mitre/inspec_tools)
 
