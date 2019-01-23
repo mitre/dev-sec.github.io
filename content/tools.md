@@ -1,4 +1,5 @@
 ---
+title: "Tools Overview"
 layout: inspec_tools
 ---
 
@@ -16,3 +17,11 @@ InspecTools supplies several CLI(Command line interface) tools to convert to and
 * pdf2inspec
 
 It also includes an API that can be used in a ruby application. The Ruby API is defined in lib/inspec_tools/inspec.rb
+
+## [Heimdall Tools]({{ ref "heimdall_tools.md" }})
+
+
+HeimdallTools supplies several CLI tools to convert HDF format to be viewable in Heimdall. The converters in version 1.1.1 are:
+
+* fortify_mapper
+* zap_mapper

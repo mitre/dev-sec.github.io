@@ -4,7 +4,7 @@
       <h1>
         <a href="/index.html" id="nav-logo">
           <img src="/images/mitre_inspec_vert_rt.svg" style="width: 120px;" />
-          MITRE Inspec Compliance Framework
+          MITRE Security Compliance Framework
         </a>
       </h1>
 
@@ -14,13 +14,41 @@
   </ul>
 
   <section class="top-bar-section">
+    <ul class ="right">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+            {{ if .HasChildren }}
+                <li class="{{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+                    <a href="#">
+                        {{ .Pre }}
+                        <span>{{ .Name }}</span>
+                    </a>
+                </li>
+                <ul class="sub-menu">
+                    {{ range .Children }}
+                        <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                            <a href="{{ .URL }}">{{ .Name }}</a>
+                        </li>
+                    {{ end }}
+                </ul>
+            {{ else }}
+                <li>
+                    <a href="{{ .URL }}">
+                        {{ .Pre }}
+                        <span>{{ .Name }}</span>
+                    </a>
+                </li>
+            {{ end }}
+        {{ end }}
+    </ul>
+  <!--<section class="top-bar-section">
     <ul class="right">
       {{ range .Site.Menus.global }}
        <li>
         <a href="{{ .URL }}">
           {{ .Name }}
         </a>
-      </li>
+      </li> -->
         <!-- {{ if .HasChildren }}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ .Name }} <span class="caret"></span></a>
@@ -32,8 +60,8 @@
         </ul>
         {{ else }}
         <a href="{{ .URL }}">{{ .Name }}</a>
-        {{ end  }}-->
-      {{ end }}
+        {{ end  }}
+      {{ end }} -->
     </ul>
   </section>
 </nav>
