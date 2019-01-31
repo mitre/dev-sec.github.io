@@ -1,4 +1,4 @@
 ---
 title: "Security + DevOps"
-description: "Server Hardening Automation"
+description: "Security Compliance Framework"
 ---

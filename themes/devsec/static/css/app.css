@@ -10361,39 +10361,51 @@ th.hide-for-touch {
   background-color: #ECA73F;
 }
 
-.baselines .features .apache>a {
+.baselines .features .microsoft-sql-2014-database-stig-baseline>a {
   background-color: #E54D4D;
 }
 
 .baselines .features .nginx>a {
-  background-color: #658DED;
+  background-color: #ECA73F;
 }
 
-.baselines .features .ssh>a {
+.baselines .features .aws-s3-baseline>a {
   background-color: #658DED;
 }
 
 .baselines .features .docker>a {
+  background-color: #ECA73F;
+}
+
+.baselines .features .cis-aws>a {
   background-color: #658DED;
 }
 
-.baselines .features .k8s>a {
+.baselines .features .aws-demo>a {
   background-color: #658DED;
 }
 
-.baselines .features .ssl>a {
-  background-color: #658DED;
-}
-
-.baselines.features .disa-rhel6>a {
+.baselines .features .disa-rhel6>a {
   background-color: #6E65B6;
 }
 
-.baselines .features .mysql>a:hover {
+.baselines .features .os>a {
+  background-color: #6E65B6;
+}
+
+.baselines .features .iis-server-8.5-server>a {
   background-color: #EB8D00;
 }
 
-.baselines .features .postgres>a:hover {
+.baselines .features .iis-server-8.5-site>a {
+  background-color: #EB8D00;
+}
+
+.baselines .features .helloworld-functional-baseline>a {
+  background-color: #EB8D00;
+}
+
+.baselines .features .helloworld-security-baseline>a {
   background-color: #EB8D00;
 }
 
@@ -10556,12 +10568,6 @@ th.hide-for-touch {
 .baseline-links {
   margin-top: 10px;
   margin-bottom: 10px
-}
-
-#team {
-  background: url("/images/bg.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 #team .header {
@@ -11381,4 +11387,5 @@ blockquote p {
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: flex-start;
+    display: flex;
     }
